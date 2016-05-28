@@ -1,5 +1,12 @@
 <?php
 
+/*In this file, all the actions in the PostsController are added - index, view, show, add, edit and delete
+View action shows all the jobs created.
+Show action shows detailed information about each job.
+Add action generates token in the database and sends email to the creator of the job.
+The Email Configuration is via gmail.
+*/
+
 App::uses('AppController','Controller');
 App::uses('CakeEmail','Network/Email');
 
@@ -7,8 +14,6 @@ class JobsController extends AppController{
 
 	//index action
 	public function index(){
-
-
 	}
 
 	//view action
@@ -59,11 +64,11 @@ class JobsController extends AppController{
             	 $Email->config('gmail');
 				 $Email->from(array('cakephp.2016@gmail.com' => 'no-reply'))
     			  ->to($mailId)
-    			  ->subject('Job Board Confirmation Email with Important Links')
-    			  ->send("Thankyou for creating a job using our services. We are happy to help you! You will be able to edit and delete with the links provided below. Please click on the following to Edit: "
+    			  ->subject('Job Board Link')
+    			  ->send("Thankyou for creating a job by using our services.\r\nWe are happy to help you!\r\n\r\nYou will be able to edit and delete your job with the link provided below.\r\n\r\nPlease click on the following Link: \r\n"
     			  	.$link);
 
-    			  $this->Session->setFlash('Hurray! Your Job was successfully created!','add_success');
+    			  $this->Session->setFlash('Hurray! Your Job was successfully created! Please check your email for further services.','add_success');
                   return $this->redirect(array('action' => 'index'));
 			}
 			$this->Session->setFlash('Sorry, we were unable to add your job.','add_error');
@@ -72,6 +77,8 @@ class JobsController extends AppController{
 
 	//edit action
 	public function edit($id=null){
+
+
 		if(!$id){
 			$this->Session->setFlash('Invalid Choice','info');
 			return $this->redirect(array('action' => 'index'));
@@ -83,6 +90,7 @@ class JobsController extends AppController{
         	return $this->redirect(array('action' => 'index'));	
     	}
 
+    	//retrieves token from the database
 	    $token=$this->request->query['Token'];
 	    $idCheck=$this->Job->query('select id from jobs where token="'.$token.'";');
 
@@ -111,25 +119,27 @@ class JobsController extends AppController{
 
 	//delete action
 	public function delete(){
+		
+
 		$id=$this->request->data['Job']['id'];
 		
-		// if(!$id){
-		// 	$this->Session->setFlash('Invalid Choice','info');
-		// 	return $this->redirect(array('action' => 'index'));
-		// }
+		if(!$id){
+			$this->Session->setFlash('Invalid Choice','info');
+			return $this->redirect(array('action' => 'index'));
+		}
 		
-		// if($this->request->query['Token']==null)
-  //   	{
-  //       	$this->Session->setFlash('UnAuthorized Access','warning');
-  //       	return $this->redirect(array('action' => 'index'));	
-  //   	}
+		if($this->request->data['Job']['token']==null)
+    	{
+        	$this->Session->setFlash('UnAuthorized Access','warning');
+        	return $this->redirect(array('action' => 'index'));	
+    	}
 
-	 //    $token=$this->request->query['Token'];
-	 //    $idCheck=$this->Job->query('select id from jobs where token="'.$token.'";');
+	    $token=$this->request->data['Job']['token'];
+	    $idCheck=$this->Job->query('select id from jobs where token="'.$token.'";');
 
-	    // if($idCheck[0]['jobs']['id']==$id){
+	    if($idCheck[0]['jobs']['id']==$id){
 
-	    	//	$job=$this->Job->findById($id);
+	    		$job=$this->Job->findById($id);
 
 	    		if($this->request->is(array('post','put'))){
 					
@@ -146,9 +156,7 @@ class JobsController extends AppController{
 					return $this->redirect(array('action'=>'index'));
 
 				}
-		// }
-
-
+		}
 	}
 }
 ?>

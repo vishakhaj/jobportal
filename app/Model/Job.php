@@ -1,6 +1,10 @@
 <?php
 
+
+//Validation across all the fields.
+
 class Job extends AppModel{
+
 	public $validate=array(
 		'company'=>array(
 			'rule'=>'notEmpty',

@@ -15,6 +15,7 @@ body {
   height: 80px;
 }
 
+/*Nav bar*/
 .masthead-brand {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -52,7 +53,7 @@ body {
   border-bottom-color: #242f24;
 }
 
-/*footer styling*/
+/*footer*/
 .mastfoot {
   color: #ffffff; /* IE8 proofing */
   color: #ffffff;
@@ -79,13 +80,17 @@ p.btn-content{
 }
 
 .btnCreateJob{
-
+  background-color: transparent;
+  color: black;
+  border: 2px solid white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none !important;
+  display: inline-block;
 	width:40%;
-	border:none;
-	border-radius: 0;
-	background-color: #000000;
 	letter-spacing: 4px;
 	font-weight: 800;
+  font-size: 20px;
 }
 
 .btnCreateJob:hover,.btnCreateJob:active,
@@ -97,7 +102,7 @@ p.btn-content{
 /** Tables **/
 
 .tableContent{
-  margin-bottom: 6 0px;
+  margin-bottom: 60px;
 }
 
 table {
@@ -156,30 +161,12 @@ table td.actions a {
   color: #ffffff;
 }
 
+/*edit details*/
+#editDetails{
+  margin-bottom: 50px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*form*/
 form div {
   clear: both;
   padding: .5em;
@@ -193,8 +180,9 @@ form .required {
   font-weight: bold;
 }
 form .required label:after {
-  color: #e32;
+  color: #D50000;
   content: '*';
+  font-size: 20px;
   display:inline;
 }
 form div.submit {
@@ -206,6 +194,7 @@ label {
   display: block;
   font-size: 110%;
   margin-bottom:3px;
+  color:#000000;
 }
 input {
   border:2px solid #ffffff;
@@ -229,38 +218,6 @@ textarea{
   padding: 1%;
   width:40%;
 }
-select {
-  clear: both;
-  font-size: 120%;
-  vertical-align: text-bottom;
-}
-select[multiple=multiple] {
-  width: 100%;
-}
-option {
-  font-size: 120%;
-  padding: 0 3px;
-}
-input[type=checkbox] {
-  clear: left;
-  float: left;
-  margin: 0px 6px 7px 2px;
-  width: auto;
-}
-div.checkbox label {
-  display: inline;
-}
-input[type=radio] {
-  float:left;
-  width:auto;
-  margin: 6px 0;
-  padding: 0;
-  line-height: 26px;
-}
-.radio label {
-  margin: 0 0 6px 20px;
-  line-height: 26px;
-}
 
 input[type=submit] {
   display: inline;
@@ -273,6 +230,8 @@ input[type=submit] {
   letter-spacing: 4px;
   font-weight: 800;
   font-size: 20px;
+  padding-bottom:40px;
+  
 }
 
 input[type=submit]:hover,input[type=submit]:active,
@@ -280,32 +239,6 @@ input[type=submit]:focus{
      background-color: #880E4F;
     color:#000000;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
